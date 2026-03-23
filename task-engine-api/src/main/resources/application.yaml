@@ -1,0 +1,28 @@
+spring:
+  # DataSource: This is the 'Connection String' to your Database
+  datasource:
+    url: jdbc:postgresql://localhost:5432/taskdb # Protocol : DB Type : // Location : Port / DB Name
+    username: likhithsabbarapu # Your database admin name
+    password: "" # Your database password
+    driver-class-name: org.postgresql.Driver # The Java 'translator' for Postgres
+
+  # JPA (Java Persistence API): The bridge between Java Objects and SQL Tables
+  jpa:
+    hibernate:
+      # ddl-auto: 'update' tells Hibernate to automatically create the 'tasks' table
+      # based on your @Entity Task class without you writing SQL.
+      ddl-auto: update
+
+    # show-sql: Prints every SQL query (SELECT, INSERT, etc.) to your IntelliJ console
+    show-sql: true
+
+    properties:
+      hibernate:
+        # format_sql: Makes the printed SQL look pretty and readable (multiline)
+        format_sql: true
+        # dialect: Tells Hibernate exactly which version of SQL rules to follow
+        dialect: org.hibernate.dialect.PostgreSQLDialect
+
+# Server: Change the port if 8080 is busy, but we'll stick to 8080
+server:
+  port: 8080
