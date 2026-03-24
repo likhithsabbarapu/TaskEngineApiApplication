@@ -2,6 +2,8 @@ package com.likhith.taskengine.repository;
 
 import com.likhith.taskengine.model.Task;
 import com.likhith.taskengine.model.TaskStatus;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
@@ -15,4 +17,10 @@ public interface TaskRepository extends JpaRepository<Task, Long> {
     // Custom query method: Spring generates the SQL based on the method name!
     // Spring Magic: This method automatically generates "SELECT * FROM tasks WHERE status = ?"
     List<Task> findByStatus(TaskStatus status);
+
+    /**
+     * Find tasks by status with pagination support
+     * Allows sorting and pagination of filtered results
+     */
+    Page<Task> findByStatus(TaskStatus status, Pageable pageable);
 }

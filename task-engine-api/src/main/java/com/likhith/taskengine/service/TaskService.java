@@ -1,13 +1,14 @@
 package com.likhith.taskengine.service;
 
 import com.likhith.taskengine.model.Task;
+import com.likhith.taskengine.model.TaskStatus;
 import com.likhith.taskengine.repository.TaskRepository;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-
-import static org.springframework.data.jpa.domain.AbstractPersistable_.id;
 
 @Service // 1. Marks this as the "Brain" of the application
 @RequiredArgsConstructor // 2. Lombok: creates a constructor for the 'final' fields below
@@ -15,26 +16,53 @@ public class TaskService {
 
     private final TaskRepository taskRepository; // 3. The dependency we need
 
+    /**
+     * Create a new task
+     */
     public Task createTask(Task task) {
-        // 4. Logic: We could check if a task with the same name exists here
-        return taskRepository.save(task); // 5. Pass it to the Data Layer
+        return taskRepository.save(task);
     }
 
-    public List<Task> getAllTasks() {
-        return taskRepository.findAll(); // 6. Fetch everything from the DB
-
-        /*Key Concept: SoC (Separation of Concerns)
-           Why a Service? If tomorrow you decide to send a Slack notification every
-            time a task is created, you only change the Service.
-          The Controller and Repository stay exactly the same.*/
+    /**
+     * Get all tasks with pagination and sorting
+     */
+    public Page<Task> getAllTasks(Pageable pageable) {
+        return taskRepository.findAll(pageable);
     }
-        public Task saveTask(Task task){
-            return taskRepository.save(task);
 
-        }
+    /**
+     * Get all tasks (without pagination)
+     */
+    public List<Task> getAllTasksList() {
+        return taskRepository.findAll();
+    }
 
-        public void deleteTask(Long id){
-            taskRepository.deleteById(id);
-        }
+    /**
+     * Get task by ID
+     */
+    public Task getTaskById(Long id) {
+        return taskRepository.findById(id)
+            .orElseThrow(() -> new RuntimeException("Task not found with id: " + id));
+    }
 
+    /**
+     * Get tasks filtered by status with pagination
+     */
+    public Page<Task> getTasksByStatus(TaskStatus status, Pageable pageable) {
+        return taskRepository.findByStatus(status, pageable);
+    }
+
+    /**
+     * Save or update task
+     */
+    public Task saveTask(Task task) {
+        return taskRepository.save(task);
+    }
+
+    /**
+     * Delete task by ID
+     */
+    public void deleteTask(Long id) {
+        taskRepository.deleteById(id);
+    }
 }

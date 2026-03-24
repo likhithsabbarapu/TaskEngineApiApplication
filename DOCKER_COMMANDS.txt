@@ -1,0 +1,104 @@
+# 📋 COMMAND REFERENCE CARD
+
+## ⚡ QUICK COMMANDS (Copy & Paste)
+
+### START APPLICATION
+```bash
+cd /Users/likhithsabbarapu/Documents/EnterpriseTaskSystem && docker-compose up -d
+```
+
+### STOP APPLICATION
+```bash
+docker-compose down
+```
+
+### VIEW LOGS
+```bash
+docker-compose logs -f
+```
+
+### CHECK STATUS
+```bash
+docker-compose ps
+```
+
+### RESTART
+```bash
+docker-compose restart
+```
+
+---
+
+## 🌐 URLS AFTER STARTING
+
+```
+Login:  http://localhost:8080/
+Docs:   http://localhost:8080/swagger-ui.html
+API:    http://localhost:8080/api/tasks
+```
+
+---
+
+## 🔐 CREDENTIALS
+
+```
+Username: admin
+Password: admin123
+
+Database: taskdb
+DB User:  taskuser
+DB Pass:  taskpass123
+```
+
+---
+
+## 📊 USEFUL COMMANDS
+
+```
+docker-compose up -d          Start in background
+docker-compose down           Stop all containers
+docker-compose restart        Restart everything
+docker-compose logs -f        View live logs
+docker-compose ps             List containers
+docker-compose build          Rebuild application
+docker-compose down -v        Delete everything including data
+```
+
+---
+
+## ✅ COMPLETE WORKFLOW
+
+```bash
+# 1. Start
+cd /Users/likhithsabbarapu/Documents/EnterpriseTaskSystem
+docker-compose up -d
+
+# 2. Wait 30-60 seconds
+# Check logs: docker-compose logs -f
+
+# 3. Open browser
+# http://localhost:8080/
+
+# 4. Login
+# admin / admin123
+```
+
+---
+
+## 🎯 ONE-LINER COMMANDS
+
+```bash
+# Start and show logs
+cd /Users/likhithsabbarapu/Documents/EnterpriseTaskSystem && docker-compose up -d && docker-compose logs -f
+
+# Stop and clean
+docker-compose down -v
+
+# Rebuild and start
+docker-compose build --no-cache && docker-compose up -d
+```
+
+---
+
+**Everything is ready!** Just run `docker-compose up -d`
+
