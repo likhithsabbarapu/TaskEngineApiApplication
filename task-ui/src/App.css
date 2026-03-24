@@ -1,3 +1,178 @@
+/* iOS Inspired Design */
+* {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  background-color: #F2F2F7;
+  color: #000000;
+}
+
+html,
+body,
+#root {
+  width: 100%;
+  height: 100%;
+}
+
+input,
+select,
+button {
+  font-family: '-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif';
+}
+
+input:focus,
+select:focus {
+  outline: none;
+}
+
+/* Smooth transitions */
+button {
+  cursor: pointer;
+  transition: background-color 0.2s ease, transform 0.15s ease, box-shadow 0.2s ease;
+}
+
+button:active {
+  transform: scale(0.96);
+}
+
+input,
+select {
+  transition: background-color 0.2s ease, border-color 0.2s ease;
+}
+
+input:disabled,
+select:disabled,
+button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+/* Scrollbar styling - minimal iOS style */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #D1D1D6;
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #A0A0A5;
+}
+
+/* Card shadows - iOS style */
+.card {
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.08);
+}
+
+.card:active {
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.12);
+}
+
+/* Haptic-like feedback */
+button:active {
+  opacity: 0.8;
+}
+
+/* Typography */
+h1,
+h2,
+h3 {
+  letter-spacing: -0.5px;
+}
+
+p {
+  line-height: 1.5;
+}
+
+/* Input placeholder styling */
+input::placeholder {
+  color: #C7C7CC;
+}
+
+/* Responsive adjustments */
+@media (max-width: 600px) {
+  input,
+  button,
+  select {
+    font-size: 16px; /* Prevents zoom on iOS */
+  }
+}
+
+/* Animation for task appearance */
+@keyframes slideInUp {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.task-item {
+  animation: slideInUp 0.3s ease-out;
+}
+
+/* Animation for task deletion */
+@keyframes slideOutRight {
+  to {
+    opacity: 0;
+    transform: translateX(100%);
+  }
+}
+
+.task-delete {
+  animation: slideOutRight 0.3s ease-out;
+}
+
+/* iOS-style focus ring (accessibility) */
+button:focus-visible {
+  outline: 2px solid #007AFF;
+  outline-offset: 2px;
+  border-radius: 8px;
+}
+
+input:focus-visible {
+  outline: none;
+  box-shadow: inset 0 0 0 2px #007AFF;
+}
+
+select:focus-visible {
+  outline: none;
+  box-shadow: inset 0 0 0 2px #007AFF;
+}
+
+/* Status badge animation */
+@keyframes pulse {
+  0%,
+  100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.7;
+  }
+}
+
+.status-badge {
+  transition: all 0.2s ease;
+}
+
+.status-badge:hover {
+  transform: translateY(-1px);
+}
+
 .counter {
   font-size: 16px;
   padding: 5px 10px;
